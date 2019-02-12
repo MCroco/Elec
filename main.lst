@@ -1,0 +1,55 @@
+CCS PCH C Compiler, Version 5.008, 5967               12-févr.-19 10:49
+
+               Filename:   C:\Users\Hymed\Desktop\TEst_Temperature\main.lst
+
+               ROM used:   30 bytes (0%)
+                           Largest free fragment is 32738
+               RAM used:   4 (0%) at main() level
+                           4 (0%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0004
+....................   
+.................... #include <18F458.h> 
+.................... //////// Standard Header file for the PIC18F458 device //////////////// 
+.................... #device PIC18F458 
+....................  
+.................... #list 
+....................  
+.................... #byte  PORTB = 0xf81 
+.................... #byte  TRISB = 0xf93 
+.................... void main() { 
+0004:  CLRF   FF8
+0006:  BCF    FD0.7
+0008:  BSF    FC1.0
+000A:  BSF    FC1.1
+000C:  BSF    FC1.2
+000E:  BCF    FC1.3
+0010:  MOVLW  07
+0012:  MOVWF  FB4
+....................  
+.................... TRISB = 0; 
+0014:  CLRF   F93
+....................     while(1){ 
+....................  
+....................  output_b(255); 
+0016:  CLRF   F93
+0018:  SETF   F8A
+001A:  BRA    0016
+....................  
+....................  
+....................  
+....................    } 
+.................... } 
+001C:  SLEEP 
+
+Configuration Fuses:
+   Word  1: 2700   RC_IO NOOSCSEN
+   Word  2: 0E0E   PUT BROWNOUT BORV25 NOWDT WDT128
+   Word  3: 0000  
+   Word  4: 0081   STVREN NOLVP NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
