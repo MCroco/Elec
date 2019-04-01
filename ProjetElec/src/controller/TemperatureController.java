@@ -18,15 +18,10 @@ public class TemperatureController {
 		this.vue = vue;
 	}
 	
-	public void temperatureRecue(int temp) {
-		model.setSeuil(temp);
+	public void modifierSeuil(int seuil) {
+		model.setSeuil(seuil);
 		vue.affiche(model.toString());
-		if(model.getTemperature() >= temp) {
-			vue.affiche(alerte + model.getTemperature());
-		}
-		else {
-			vue.affiche(info + model.getTemperature());
-		}
+		temperatureEnvoi();
 	}
 	
 	public void temperatureEnvoi() {

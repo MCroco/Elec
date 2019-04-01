@@ -1,6 +1,5 @@
 package view;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import controller.TemperatureController;
@@ -17,5 +16,4 @@ public abstract class TemperatureVue implements Observer{
 	}
 	
 	public abstract void affiche(String string);
-	public abstract void update(Observable o, Object arg);
 }

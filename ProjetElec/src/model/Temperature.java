@@ -13,27 +13,25 @@ public class Temperature extends Observable{
 	public static final int SEUIL_DEFAULT = 20;
 	
 	/**
-	 * Entier repreésentant la temperature mesuree et transmis
+	 * Entier représentant la temperature mesuree et transmis
 	 */
 	private int temperature = 19;
 	
 	
 	public Temperature() {
 		seuil = 20;
-		setChanged();
-		notifyObservers();
-
 	}
 
 
 	public int getSeuil() {
+		setChanged();
+		notifyObservers();
 		return seuil;
 	}
 
 
 	public void setSeuil(int seuil) {
 		this.seuil = seuil;
-
 		setChanged();
 		notifyObservers();
 
@@ -41,21 +39,23 @@ public class Temperature extends Observable{
 
 
 	public int getTemperature() {
+		setChanged();
+		notifyObservers();
 		return temperature;
 	}
 
 
 	public void setTemperature(int temperature) {
 		this.temperature = temperature;
+		setChanged();
+		notifyObservers();
 	}
 	
 	@Override
 	public String toString() {
-		return "La Temperature vaut: " + temperature + 
-				"/nLe Seuil vaut: " + seuil;
-	}
-	
-	public static void main(String[] args) {
-		new Temperature();
+		setChanged();
+		notifyObservers();
+		return  "\n*** Le Seuil de la température vaut:   " + seuil +
+				"\n*** La Temperature vaut:               " + temperature;
 	}
 }

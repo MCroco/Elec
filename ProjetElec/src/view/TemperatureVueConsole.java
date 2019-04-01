@@ -17,34 +17,42 @@ public class TemperatureVueConsole extends TemperatureVue implements Observer{
 		new Thread(new ReadInput()).start();
 	}
 	
-	@Override
-	public void update(Observable o, Object arg) {
-		System.out.println(model);
-		informer();		
-	}
-	
 	public void informer() {
-		affiche("Entrez un nombre entier si vous voulez modifier le seuil température: ");
+		affiche("Entrez: \n--> \"m\" si vous voulez modifier le seuil température \n		ou  	\n--> \"d\" pour le seuil par défaut: ");
 	}
 	
 	private class ReadInput implements Runnable{
 		public void run() {
 			while(true) {
 				try {
+					String c = sc.next();
+					switch(c) {
+						case "m":
+							affiche("Veuillez introduire une nombre compris entre 0 et 100");
+							break;
+						case "d":
+							controller.modifierSeuil(20);
+							informer();
+							break;
+						default: 
+							affiche ("\n");
+							affiche("Veuillez introduire une valeur correcte s'il vous plaît: ");
+							update(model, null);
+					}
 					
 					int i = sc.nextInt();
-					if(i < -15 || i > 150) {
+					if(i < 0 || i > 100) {
 						affiche("Valeur de donnée introduite incorrecte!");
-						informer();
+						update(model, null);
 					}
 					else {
-						controller.temperatureRecue(i);
+						controller.modifierSeuil(i);
 						informer();
-					}
-					
+					}					
 				}
 				catch (Exception e) {
 					affiche("Veuillez introduire une valeur correcte s'il vous plaît: ");
+					update(model, null);
 				}
 			}
 		}
@@ -52,6 +60,12 @@ public class TemperatureVueConsole extends TemperatureVue implements Observer{
 	
 	public void affiche(String Str) {
 		System.out.println(Str);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		affiche(model.toString());
+		informer();	
 	}
 
 }
