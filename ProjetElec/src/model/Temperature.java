@@ -24,8 +24,6 @@ public class Temperature extends Observable{
 
 
 	public int getSeuil() {
-		setChanged();
-		notifyObservers();
 		return seuil;
 	}
 
@@ -39,8 +37,6 @@ public class Temperature extends Observable{
 
 
 	public int getTemperature() {
-		setChanged();
-		notifyObservers();
 		return temperature;
 	}
 
@@ -53,9 +49,7 @@ public class Temperature extends Observable{
 	
 	@Override
 	public String toString() {
-		setChanged();
-		notifyObservers();
-		return  "\n*** Le Seuil de la température vaut:   " + seuil +
+		return  "\n\n\n\n*** Le Seuil de la température vaut:   " + seuil +
 				"\n*** La Temperature vaut:               " + temperature;
 	}
 }

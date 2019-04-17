@@ -205,14 +205,19 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 			field.setText("");
 			break;
 		case "Modifier":
-			if(field.getText().length() != 0) {
-				controller.modifierSeuil(Integer.parseInt(field.getText()));
-				update(model, model.getTemperature());
-				controller.temperatureEnvoi();
-				field.setText("");
+			try {
+				if(field.getText().length() != 0 ) {
+					controller.modifierSeuil(Integer.parseInt(field.getText()));
+					update(model, model.getTemperature());
+					field.setText("");
+				}
+				else {
+					update(model, model.getTemperature());
+				}
 			}
-			else {
-				update(null, null);
+			catch(Exception e1) {
+				field.setText("");
+				affiche("Veillez introduire un chiffre de 0 à 100!!!!");
 			}
 			break;
 		default:

@@ -20,17 +20,11 @@ public class TemperatureController {
 	
 	public void modifierSeuil(int seuil) {
 		model.setSeuil(seuil);
-		vue.affiche(model.toString());
 		temperatureEnvoi();
 	}
 	
 	public void temperatureEnvoi() {
-		if(model.getSeuil() <= model.getTemperature()) {
-			vue.affiche(alerte);
-		}
-		else {
-			vue.affiche(info);
-		}
+		
 	}
 	
 }
