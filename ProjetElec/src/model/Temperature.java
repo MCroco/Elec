@@ -89,7 +89,7 @@ public class Temperature extends Observable{
 	
 	public void setTempSortie(String text) {
 		try {
-			
+			//setSeuil(Integer.parseInt(text));
 			//text = ";" + field.getText();
 			Temperature.getSerialPort().setParams(SerialPort.BAUDRATE_9600, 
 	                             SerialPort.DATABITS_8,

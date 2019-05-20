@@ -125,7 +125,7 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 		frame.setTitle("Thermostat");
 		frame.setResizable(false);
 		frame.setFont(new Font("Cambria", Font.PLAIN, 20));
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\manue\\Documents\\Elec-master\\Elec-master\\ProjetElec\\src\\img\\thermometer (3).png"));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("src\\img\\thermometer (3).png"));
 		frame.setVisible(true);
 		frame.setSize(800, 345);
 		
@@ -152,9 +152,9 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 		gbc_panel.gridy = 10;
 		frame.getContentPane().add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		portlst.setBounds(10, 11, 112, 20);
@@ -172,25 +172,6 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 		
 		
 		panel.add(msgstatus, gbc_msgstatus);
-		disconnect.setHorizontalAlignment(SwingConstants.LEFT);
-		disconnect.setIcon(new ImageIcon("src\\img\\disconnected-chains.png"));
-		disconnect.setFont(new Font("Cambria", Font.PLAIN, 20));
-		disconnect.setBounds(10, 42, 112, 23);
-		disconnect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					disconnect.setVisible(false);
-					connect.setVisible(true);
-					Temperature.getSerialPort().closePort();
-					msgstatus.setForeground(Color.red);
-					msgstatus.setText("Déconnexion");
-					System.out.println("Port est fermé ");
-					
-					} catch(SerialPortException e) {
-						e.printStackTrace();
-					}
-			}
-		});
 		connect.setIcon(new ImageIcon("src\\img\\link.png"));
 		connect.setFont(new Font("Cambria", Font.PLAIN, 20));
 		connect.setBounds(10, 42, 112, 23);
@@ -231,6 +212,25 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 		gbc_connect.gridx = 5;
 		gbc_connect.gridy = 1;
 		panel.add(connect, gbc_connect);
+		disconnect.setHorizontalAlignment(SwingConstants.LEFT);
+		disconnect.setIcon(new ImageIcon("src\\img\\disconnected-chains.png"));
+		disconnect.setFont(new Font("Cambria", Font.PLAIN, 20));
+		disconnect.setBounds(10, 42, 112, 23);
+		disconnect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					disconnect.setVisible(false);
+					connect.setVisible(true);
+					Temperature.getSerialPort().closePort();
+					msgstatus.setForeground(Color.red);
+					msgstatus.setText("Déconnexion");
+					System.out.println("Port est fermé ");
+					
+					} catch(SerialPortException e) {
+						e.printStackTrace();
+					}
+			}
+		});
 		GridBagConstraints gbc_disconnect = new GridBagConstraints();
 		gbc_disconnect.fill = GridBagConstraints.BOTH;
 		gbc_disconnect.insets = new Insets(0, 0, 5, 5);
@@ -327,26 +327,7 @@ public class TemperatureVueGui extends TemperatureVue implements ActionListener,
 			break;
 		case "Modifier":
 			if(field.getText().length() != 0) {
-				/*try {
-					
-					text = ";" + field.getText();
-			        
-					Temperature.getSerialPort().setParams(SerialPort.BAUDRATE_9600, 
-			                             SerialPort.DATABITS_8,
-			                             SerialPort.STOPBITS_1,
-			                             SerialPort.PARITY_NONE);//Set params. Also you can set params by this string: serialPort.setParams(9600, 8, 1, 0);
-					Temperature.getSerialPort().writeBytes(text.getBytes());//Write data to port
-			        
-			      
-			    
-			        
-					Temperature.getSerialPort().setParams(9600, 8, 1, 0);//Set params.
-			 
-			    }
-			    catch (SerialPortException ex) {
-			        System.out.println(ex);
-			    }*/
-				//model.setTempSortie(';' + field.getText());
+				model.setTempSortie(';' + field.getText());
 				model.lectureEntree();
 				
 				controller.modifierSeuil(Integer.parseInt(field.getText()));
