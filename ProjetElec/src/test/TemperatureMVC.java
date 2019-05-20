@@ -20,7 +20,7 @@ public class TemperatureMVC {
 		ctrConsole.addVue(console);	
 		
 		model.addObserver(gui);
-		model.addObserver(console);
+		model.addObserver(console);	
 	}
 	
 	public static void main(String args[]) {
