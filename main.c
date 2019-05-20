@@ -72,15 +72,19 @@ printf("%d", x);
     TRISB = 0;
    
    if (volt <  b) {
-    delay_ms(10);
+    
     output_low(RED_LED);
+     delay_ms(300);
     output_high(GREEN_LED);
+    
     
    }
       
      else {
-    delay_ms(10);
+   
     output_high(RED_LED);
+    delay_ms(300);
+     output_low(RED_LED);
     output_low(GREEN_LED);
      
    }
@@ -102,7 +106,7 @@ void main(){
      flag = 0;
      b = ((float)(treshstr[1] - 48)*10 + (treshstr[2] -48));
 
-     printf("%d",b);
+     //printf("%d",b);
      }
  
      traduction();
